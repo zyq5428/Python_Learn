@@ -1,0 +1,18 @@
+# Python学习常用命令
+
+## 命令行指令
+
+* cd 切换到指定目录
+* ls 显示指定工作目录下之内容
+
+## 切换工作目录
+
+* cd F:\Python_Learn\
+
+## 启动Anaconda终端
+
+* jupyter-lab
+
+## 运行python程序
+
+* python name.py
