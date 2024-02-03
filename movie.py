@@ -7,9 +7,18 @@ from urllib.parse import urljoin
 
 logging.basicConfig(level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s: %(message)s')
+                    
+# 定义MongoDB的连接字符串
+MONGO_CONNECTION_STRING = 'mongodb://localhost:27017'
+MONGO_DB_NAME = 'movies0120'
+MONGO_COLLECTION_NAME = 'movies0120'
 
-BASE_URL = 'https://ssr1.scrape.center'
-TOTAL_PAGE = 10
+client = pymongo.MongoClient(MONGO_CONNECTION_STRING) # 连接MongoDB
+db = client[MONGO_DB_NAME]    # 获得数据库
+collection = db[MONGO_COLLECTION_NAME] # 获得数据库的集合
+
+BASE_URL = 'https://ssr1.scrape.center' #基础网址
+TOTAL_PAGE = 10                           # 总页数
 
 '''
 程序作用: 爬取指定页面，返回页面文本
@@ -104,14 +113,7 @@ else:
     None
 '''
 
-# 定义MongoDB的连接字符串
-MONGO_CONNECTION_STRING = 'mongodb://localhost:27017'
-MONGO_DB_NAME = 'movies0120'
-MONGO_COLLECTION_NAME = 'movies0120'
 
-client = pymongo.MongoClient(MONGO_CONNECTION_STRING)
-db = client[MONGO_DB_NAME]
-collection = db[MONGO_COLLECTION_NAME]
 
 '''
 程序作用: 保存数据到mongodb

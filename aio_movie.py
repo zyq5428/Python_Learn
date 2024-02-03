@@ -1,20 +1,21 @@
-import requests
+import asyncio
+import aiohttp
 import logging
-import time
+import json
+from motor.motor_asyncio import AsyncIOMotorClient
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+logging.basicConfig(level = logging.ERROR, 
+                    format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-TOTAL_NUMBER = 100
-BASE_URL = 'https://ssr4.scrape.center/detail/{id}'
+# 定义MongoDB的连接字符串
+MONGO_CONNECTION_STRING = 'mongodb://localhost:27017'
+MONGO_DB_NAME = 'movie'
+MONGO_COLLECTION_NAME = 'movie'
 
-start_time = time.time()
+client = AsyncIOMotorClient(MONGO_CONNECTION_STRING)
+db = client[MONGO_DB_NAME]
+collection = db[MONGO_COLLECTION_NAME]
 
-for id in range(1, TOTAL_NUMBER + 1):
-    url = BASE_URL.format(id=id) # 'https://ssr4.scrape.center/detail/1'
-    logging.info('scraping %s', url)
-    response = requests.get(url)
+BASE_URL = 'https://ssr1.scrape.center'
+TOTAL_PAGE = 10
 
-end_time = time.time()
-
-logging.info('Total time %s sconds', end_time - start_time)

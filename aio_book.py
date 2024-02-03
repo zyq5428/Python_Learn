@@ -7,7 +7,7 @@
 同时爬取的结果也以异步的方式存储到 MongoDB 里面。
 '''
 
-import asyncio
+import asyncio # input, output
 import aiohttp
 import logging
 import json
@@ -15,7 +15,6 @@ from motor.motor_asyncio import AsyncIOMotorClient
 
 logging.basicConfig(level = logging.ERROR, 
                     format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
 
 # 定义MongoDB的连接字符串
 MONGO_CONNECTION_STRING = 'mongodb://localhost:27017'
